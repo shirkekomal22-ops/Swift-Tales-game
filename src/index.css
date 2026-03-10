@@ -1,13 +1,359 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background: linear-gradient(135deg, hsl(220, 25%, 10%), hsl(240, 30%, 15%));
+color: hsl(180, 20%, 98%);
+min-height: 100vh;
+}
+.app {
+min-height: 100vh;
+padding: 2rem;
+position: relative;
+overflow: hidden;
+}
+.background-effects {
+position: absolute;
+inset: 0;
+opacity: 0.2;
+pointer-events: none;
+}
+.orb {
+position: absolute;
+border-radius: 50%;
+filter: blur(80px);
+animation: pulse 3s ease-in-out infinite;
+}
+.orb-1 {
+top: 5rem;
+left: 2rem;
+width: 18rem;
+height: 18rem;
+background: hsl(180, 85%, 55%);
+}
+.orb-2 {
+bottom: 5rem;
+right: 2rem;
+width: 24rem;
+height: 24rem;
+background: hsl(280, 80%, 60%);
+animation-delay: 1s;
+}
+.orb-3 {
+top: 50%;
+left: 50%;
+width: 16rem;
+height: 16rem;
+background: hsl(330, 85%, 65%);
+animation-delay: 2s;
+}
+@keyframes pulse {
+0%, 100% { transform: scale(1); opacity: 0.2; }
+50% { transform: scale(1.1); opacity: 0.3; }
+}
+.container {
+max-width: 80rem;
+margin: 0 auto;
+position: relative;
+z-index: 10;
+display: flex;
+flex-direction: column;
+gap: 2rem;
+}
+.header {
+text-align: center;
+margin-bottom: 2rem;
+}
+.title {
+font-size: 4rem;
+font-weight: 900;
+background: linear-gradient(135deg, hsl(180, 85%, 55%), hsl(240, 80%, 60%));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+margin-bottom: 1rem;
+}
+.subtitle {
+font-size: 1.25rem;
+color: hsl(180, 10%, 65%);
+font-weight: 500;
+}
+.timer-card, .story-card, .input-card, .controls-card {
+background: linear-gradient(135deg, hsl(220, 20%, 15%), hsl(220, 25%, 18%));
+border: 1px solid hsla(180, 85%, 55%, 0.2);
+border-radius: 1.5rem;
+padding: 2rem;
+box-shadow: 0 12px 40px hsla(180, 85%, 55%, 0.35);
+}
+.timer-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 1rem;
+}
+.timer-label {
+font-weight: 700;
+font-size: 0.875rem;
+color: hsl(180, 10%, 65%);
+letter-spacing: 0.1em;
+}
+.timer-value {
+font-size: 3rem;
+font-weight: 900;
+background: linear-gradient(135deg, hsl(180, 85%, 55%), hsl(240, 80%, 60%));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+.timer-low {
+background: hsl(0, 85%, 60%);
+-webkit-text-fill-color: hsl(0, 85%, 60%);
+animation: pulse 0.5s ease-in-out infinite;
+}
+.progress-bar {
+height: 1.25rem;
+background: hsla(220, 15%, 25%, 0.5);
+border: 1px solid hsla(180, 85%, 55%, 0.3);
+border-radius: 1rem;
+overflow: hidden;
+position: relative;
+}
+.progress-fill {
+height: 100%;
+background: linear-gradient(135deg, hsl(180, 85%, 55%), hsl(240, 80%, 60%));
+border-radius: 1rem;
+transition: width 1s linear;
+box-shadow: 0 0 40px hsla(180, 85%, 55%, 0.3);
+}
+.progress-low {
+background: hsl(0, 85%, 60%);
+}
+.story-title {
+font-size: 2.5rem;
+font-weight: 900;
+text-align: center;
+background: linear-gradient(135deg, hsl(180, 85%, 55%), hsl(240, 80%, 60%));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+margin-bottom: 1.5rem;
+}
+.story-content {
+min-height: 15rem;
+max-height: 28rem;
+overflow-y: auto;
+padding: 1.5rem;
+background: hsla(220, 25%, 10%, 0.5);
+border: 1px solid hsla(180, 85%, 55%, 0.3);
+border-radius: 1rem;
+backdrop-filter: blur(10px);
+}
+.story-empty {
+text-align: center;
+color: hsl(180, 10%, 65%);
+font-style: italic;
+padding: 3rem 0;
+font-size: 1.125rem;
+}
+.story-line {
+display: flex;
+gap: 0.75rem;
+padding: 1rem;
+background: hsla(220, 20%, 15%, 0.5);
+border: 1px solid hsla(180, 85%, 55%, 0.1);
+border-radius: 0.75rem;
+margin-bottom: 1rem;
+transition: all 0.3s;
+}
+.story-line:hover {
+border-color: hsla(180, 85%, 55%, 0.3);
+box-shadow: 0 4px 20px hsla(180, 85%, 55%, 0.15);
+}
+.player-avatar {
+  width: 2.5rem;
+height: 2.5rem;
+border-radius: 50%;
+background: linear-gradient(135deg, hsl(180, 85%, 55%), hsl(240, 80%, 60%));
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: 900;
+font-size: 0.875rem;
+color: hsl(220, 25%, 10%);
+flex-shrink: 0;
+box-shadow: 0 8px 30px hsla(180, 85%, 55%, 0.25);
+}
+.line-content {
+flex: 1;
+}
+.line-player {
+font-size: 0.75rem;
+font-weight: 700;
+color: hsl(180, 85%, 55%);
+text-transform: uppercase;
+letter-spacing: 0.05em;
+margin-bottom: 0.25rem;
+}
+.line-text {
+color: hsl(180, 20%, 98%);
+line-height: 1.6;
+}
+.current-player {
+display: flex;
+align-items: center;
+gap: 1rem;
+padding: 1rem;
+background: linear-gradient(135deg, hsl(280, 80%, 60%), hsl(330, 85%, 65%));
+border: 1px solid hsla(330, 85%, 65%, 0.3);
+border-radius: 1rem;
+margin-bottom: 1.5rem;
+}
+.player-badge {
+width: 3.5rem;
+height: 3.5rem;
+border-radius: 50%;
+background: linear-gradient(135deg, hsl(180, 85%, 55%), hsl(240, 80%, 60%));
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: 900;
+font-size: 1.5rem;
+color: hsl(220, 25%, 10%);
+box-shadow: 0 0 40px hsla(180, 85%, 55%, 0.3);
+}
+.player-label {
+font-size: 0.75rem;
+font-weight: 700;
+color: hsl(180, 10%, 65%);
+text-transform: uppercase;
+letter-spacing: 0.1em;
+}
+.player-name {
+font-size: 1.25rem;
+font-weight: 900;
+background: linear-gradient(135deg, hsl(180, 85%, 55%), hsl(240, 80%, 60%));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+.input-group {
+display: flex;
+gap: 0.75rem;
+}
+.story-input {
+  flex: 1;
+height: 3.5rem;
+padding: 0 1.5rem;
+background: hsla(220, 25%, 10%, 0.5);
+border: 1px solid hsla(180, 85%, 55%, 0.3);
+border-radius: 0.75rem;
+color: hsl(180, 20%, 98%);
+font-size: 1rem;
+outline: none;
+transition: all 0.3s;
+}
+.story-input:focus {
+border-color: hsl(180, 85%, 55%);
+box-shadow: 0 0 0 2px hsla(180, 85%, 55%, 0.5);
+}
+.send-btn {
+width: 3.5rem;
+height: 3.5rem;
+background: linear-gradient(135deg, hsl(180, 85%, 55%), hsl(240, 80%, 60%));
+border: none;
+border-radius: 0.75rem;
+color: hsl(220, 25%, 10%);
+font-size: 1.25rem;
+font-weight: 900;
+cursor: pointer;
+transition: all 0.3s;
+box-shadow: 0 0 40px hsla(180, 85%, 55%, 0.3);
+}
+.send-btn:hover:not(:disabled) {
+opacity: 0.9;
+transform: scale(1.05);
+}
+.send-btn:disabled {
+opacity: 0.5;
+cursor: not-allowed;
+}
+.control-group {
+margin-bottom: 1.5rem;
+}
+.control-label {
+display: block;
+font-size: 0.875rem;
+font-weight: 700;
+color: hsl(180, 20%, 98%);
+margin-bottom: 0.75rem;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+}
+.control-input-group {
+display: flex;
+gap: 0.75rem;
+}
+.control-input {
+flex: 1;
+height: 3rem;
+padding: 0 1rem;
+background: hsla(220, 25%, 10%, 0.5);
+border: 1px solid hsla(180, 85%, 55%, 0.3);
+border-radius: 0.75rem;
+color: hsl(180, 20%, 98%);
+font-size: 1rem;
+outline: none;
+}
+.control-input:focus {
+border-color: hsl(180, 85%, 55%);
+}
+.button-group {
+display: flex;
+gap: 0.75rem;
+padding-top: 0.5rem;
+}
+.btn-primary, .btn-secondary, .btn-outline {
+flex: 1;
+height: 3.5rem;
+border-radius: 0.75rem;
+font-size: 1.125rem;
+font-weight: 900;
+cursor: pointer;
+transition: all 0.3s;
+border: none;
+}
+.btn-primary {
+background: linear-gradient(135deg, hsl(180, 85%, 55%), hsl(240, 80%, 60%));
+color: hsl(220, 25%, 10%);
+box-shadow: 0 0 40px hsla(180, 85%, 55%, 0.3);
+}
+.btn-primary:hover {
+opacity: 0.9;
+transform: scale(1.05);
+}
+.btn-secondary {
+background: linear-gradient(135deg, hsl(280, 80%, 60%), hsl(330, 85%, 65%));
+color: hsl(220, 25%, 10%);
+}
+.btn-secondary:hover {
+opacity: 0.9;
+transform: scale(1.05);
+}
+.btn-outline {
+background: transparent;
+color: hsl(180, 20%, 98%);
+border: 1px solid hsla(180, 85%, 55%, 0.3);
+text-align: left;
+padding: 0 1rem;
+}
+.btn-outline:hover {
+border-color: hsl(180, 85%, 55%);
+background: hsla(180, 85%, 55%, 0.1);
+}
+button:disabled {
+opacity: 0.5;
+cursor: not-allowed;
 }
