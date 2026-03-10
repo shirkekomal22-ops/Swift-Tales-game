@@ -20,8 +20,7 @@ Conditional Rendering
 Conditional rendering is used to update the user interface based on the game state. It displays the current player’s turn, the countdown timer, and messages when the story is complete or the game ends. Buttons for restarting or starting a new game are also updated dynamically, providing immediate feedback to the players.
 
 ## Home Page
-<img src ="<img width="1906" height="873" alt="Screenshot (249)" src="https://github.com/user-attachments/assets/46e0aded-1ab9-42d9-9083-238eb45884c6" />
-"
+<img width="1897" height="863" alt="Screenshot (249)" src="https://github.com/user-attachments/assets/1e5960c4-2339-4c5e-b56f-023eddae39eb" />
 
 HEAD
 # Getting Started with Create React App
